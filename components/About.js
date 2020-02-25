@@ -1,12 +1,13 @@
 /** @jsx jsx */
 
-import { jsx, Box, Styled } from "theme-ui";
+import { jsx, Box, Styled } from "theme-ui"
 
-const frontendRepo = "https://github.com/thirdcreed/Nevada";
-const dataRepo = "https://github.com/GOliveira10/Nevada-Caucus-Monitoring";
-const twitterLink = "https://twitter.com/uglycaucus";
-const emailLink = "mailto:uglycauc.us@gmail.com";
-const paypal = "https://www.paypal.com/paypalme2/uglycaucus";
+const frontendRepo = "https://github.com/thirdcreed/Nevada"
+const dataRepo = "https://github.com/GOliveira10/Nevada-Caucus-Monitoring"
+const twitterLink = "https://twitter.com/uglycaucus"
+const emailLink = "mailto:uglycauc.us@gmail.com"
+const paypal = "https://www.paypal.com/paypalme2/uglycaucus"
+
 export const About = () => {
   return (
     <Box sx={{ width: ["100%", "75%"], mx: 4, px: [2, 3] }}>
@@ -25,9 +26,8 @@ export const About = () => {
         ].
       </Styled.p>
       <Styled.p>
-        We tried our best to get the math right. If you find an issue please
-        help us by filing an issue with the affected repository or by reaching
-        out to{" "}
+        We tried our best to get the math right; If you find an issue please
+        help us by filing an issue with the repositories and reach out to{" "}
         <Styled.a href={twitterLink} target="_blank">
           @uglycaucus
         </Styled.a>{" "}
@@ -55,5 +55,5 @@ export const About = () => {
         </Styled.a>
       </Styled.p>
     </Box>
-  );
-};
+  )
+}

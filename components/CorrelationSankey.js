@@ -7,8 +7,8 @@ import Klobuchar from "../assets/Klobuchar.gif";
 import BootEdgeEdge from "../assets/BootEdgeEdge.gif";
 
 export default function CorellationSankey(_props) {
-  let sankeyContainer = useRef(null);
-  let candidatees = {
+  const sankeyContainer = useRef(null);
+  const candidatees = {
     BootEdgeEdge,
     Klobuchar,
     Gabbard,
@@ -16,15 +16,15 @@ export default function CorellationSankey(_props) {
     Biden
   };
 
-  let width = 600,
+  const width = 600,
     height = 200;
 
-  let sankey = d3Sankey()
+  const sankey = d3Sankey()
     .nodeWidth(50)
     .nodePadding(75)
     .size([width, height]);
 
-  let graph = sankey({
+  const graph = sankey({
     nodes: [
       { node: 0, name: "Warren" },
       { node: 1, name: "BootEdgeEdge" },
@@ -43,16 +43,16 @@ export default function CorellationSankey(_props) {
     ]
   });
 
-  let links = graph.links;
-  let nodes = graph.nodes;
-  let svgLinks = links.map(link => {
+  const links = graph.links;
+  const nodes = graph.nodes;
+  const svgLinks = links.map(link => {
     return (
       <g fill="none" stroke={link.suss ? "#f11" : "#000"} strokeOpacity="0.2">
         <path d={sankeyLinkHorizontal()(link)} strokeWidth={link.width}></path>
       </g>
     );
   });
-  let svgNodes = nodes.map(node => (
+  const svgNodes = nodes.map(node => (
     <g>
       <image
         href={candidatees[node.name]}

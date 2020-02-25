@@ -19,13 +19,13 @@ export default function Nevada(props) {
   mapLoadError && console.log({ mapLoadError });
 
   const fetchGeoJson = () => {
-    var request = new XMLHttpRequest();
+    const request = new XMLHttpRequest();
     request.open("GET", "https://nevada-cranks.herokuapp.com/nevada", true);
 
     request.onload = function() {
       if (this.status >= 200 && this.status < 400) {
         // Success!
-        var geojson = this.response;
+        const geojson = this.response;
         // console.log();
         setNevada({
           geojson
@@ -45,24 +45,24 @@ export default function Nevada(props) {
   };
 
   React.useEffect(fetchGeoJson, []);
-  let nevadaD3Container = useRef(null);
+  const nevadaD3Container = useRef(null);
 
   if (!nevada) {
     return <div></div>;
   }
 
-  let width = 600,
+  const width = 600,
     height = 600;
-  var projection = d3
+  const projection = d3
     .geoAlbers()
     .scale(4500)
     .rotate([116.4194, 0]) //latitude
     .center([0, 38.8026]) //longitude
     .translate([width / 2, height / 2]);
 
-  let pathGenerator = d3.geoPath().projection(projection);
+  const pathGenerator = d3.geoPath().projection(projection);
 
-  let features = JSON.parse(nevada.geojson).features;
+  const features = JSON.parse(nevada.geojson).features;
 
   function reset() {
     setZoom(
@@ -83,7 +83,7 @@ export default function Nevada(props) {
   }
 
   function toPaths(feature) {
-    let alerts =
+    const alerts =
       props.data.alerts &&
       _.flatten(_.map(props.data.alerts, v => v)).map(alert => alert.GEOID10);
 
@@ -93,16 +93,16 @@ export default function Nevada(props) {
     }
 
     function zoomToPrecinct() {
-      var path = d3.geoPath().projection(projection);
-      var centroid = path.centroid(feature);
-      let x = centroid[0];
-      let y = centroid[1];
-      let largestDimension = Math.max(
+      const path = d3.geoPath().projection(projection);
+      const centroid = path.centroid(feature);
+      const x = centroid[0];
+      const y = centroid[1];
+      const largestDimension = Math.max(
         Math.abs(path.bounds(feature)[1][1] - path.bounds(feature)[0][1]),
         Math.abs(path.bounds(feature)[1][0] - path.bounds(feature)[0][0])
       );
-      var scale = d3.scaleLinear([0, largestDimension], [0.0, 4.0]);
-      let k = scale(50);
+      const scale = d3.scaleLinear([0, largestDimension], [0.0, 4.0]);
+      const k = scale(50);
 
       if (currentZoom !== feature.properties.GEOID10) {
         setStrokeWidth(1.5 / k + "px");
@@ -123,7 +123,7 @@ export default function Nevada(props) {
       }
     }
 
-    let fill =
+    const fill =
       feature.properties.GEOID10 === selectedPrecinct
         ? "url(#diagonal-stripe-2)"
         : alerts.includes(feature.properties.GEOID10)
@@ -146,7 +146,7 @@ export default function Nevada(props) {
       ></path>
     );
   }
-  let clickablePrecincts = features.map(toPaths);
+  const clickablePrecincts = features.map(toPaths);
 
   return (
     <div>

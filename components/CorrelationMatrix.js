@@ -36,7 +36,7 @@ const Matrix = styled.div`
 `;
 
 export default function CorrelationMatrix(_props) {
-  let candidates = {
+  const candidates = {
     BootEdgeEdge,
     Klobuchar,
     Gabbard,
@@ -44,7 +44,7 @@ export default function CorrelationMatrix(_props) {
     Biden
   };
 
-  let matrixData = [
+  const matrixData = [
     { name: "BootEdgeEdge", values: [0, 0.5, 0.6, 0.7, 0.9, 0.7] },
     { name: "Klobuchar", values: [0, 0.4, 0.5, 0.4, 0.8, 0.6] },
     { name: "Gabbard", values: [0, 0.3, 0.6, 0.5, 0.7, 0.7] },
@@ -52,7 +52,7 @@ export default function CorrelationMatrix(_props) {
     { name: "Biden", values: [0, 0.3, 0.4, 0.3, 0.2, 0.5] }
   ];
 
-  let header = ["BootEdgeEdge", "Klobuchar", "Gabbard", "Warren", "Biden"];
+  const header = ["BootEdgeEdge", "Klobuchar", "Gabbard", "Warren", "Biden"];
 
   return (
     <div style={{ width: 450 }}>

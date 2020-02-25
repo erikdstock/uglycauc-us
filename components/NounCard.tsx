@@ -1,8 +1,11 @@
-import React from "react";
+import React from "react"
 
-function Icon() {
+const Icon: React.FC<{
+  style: React.SVGAttributes<any>["style"]
+}> = function Icon({ style = {} }) {
   return (
     <svg
+      style={style}
       xmlns="http://www.w3.org/2000/svg"
       x="0"
       y="0"
@@ -16,7 +19,7 @@ function Icon() {
       <path d="M62.375 111.813h-3.801l-1.9 7.5.292.46a8.437 8.437 0 005.407 1.958 8.438 8.438 0 005.412-1.962l.289-.456-1.9-7.5h-3.799zM39.874 83.443c0 9.166 5.484 17.045 13.346 20.553a22.406 22.406 0 009.154 1.947c3.262 0 6.358-.7 9.156-1.948 7.862-3.508 13.344-11.387 13.344-20.552 0-2.837-.53-5.549-1.488-8.048H41.362a22.438 22.438 0 00-1.488 8.048zM25.874 73.395h72.75V70.02h-15.09L82.36 55.936s-6.998-5.332-20.111-5.332c-13.111 0-20.111 5.332-20.111 5.332L40.965 70.02H25.873v3.375z"></path>
       <path d="M11.842 0H31.643V31.849H11.842z"></path>
     </svg>
-  );
+  )
 }
 
-export default Icon;
+export default Icon

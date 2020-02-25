@@ -1,51 +1,51 @@
 /** @jsx jsx */
-import React from "react";
-import { jsx } from "theme-ui";
-import { candidateDisplayName, precinctDisplayName } from "../lib/precinctData";
-import { Styled, Box, Button } from "theme-ui";
-import { UserContext } from "./Context";
+import React from "react"
+import { jsx } from "theme-ui"
+import { candidateDisplayName, precinctDisplayName } from "../util/precinctData"
+import { Styled, Box, Button } from "theme-ui"
+import { UserContext } from "./Context"
 
-const boolToString = b => (b ? "Yes" : "No");
+const boolToString = b => (b ? "Yes" : "No")
 
 export const PrecinctTable = () => {
-  const [showVotes, setShowVotes] = React.useState(false);
-  const [showRules, setShowRules] = React.useState(false);
-  const [showIssues, setShowIssues] = React.useState(true);
-  const [tableData, setTableData] = React.useState(null);
+  const [showVotes, setShowVotes] = React.useState(false)
+  const [showRules, setShowRules] = React.useState(false)
+  const [showIssues, setShowIssues] = React.useState(true)
+  const [tableData, setTableData] = React.useState(null)
   const { selectedPrecinct, setSelectedPrecinct, data } = React.useContext(
     UserContext
-  );
+  )
 
   const reset = () => {
-    setSelectedPrecinct(null);
-    setShowIssues(true);
-    setShowVotes(false);
-  };
+    setSelectedPrecinct(null)
+    setShowIssues(true)
+    setShowVotes(false)
+  }
 
   React.useEffect(() => {
     if (selectedPrecinct) {
-      const { refined } = data;
+      const { refined } = data
 
       if (selectedPrecinct) {
-        setTableData(refined[selectedPrecinct]);
+        setTableData(refined[selectedPrecinct])
       }
     } else {
-      setTableData(null);
+      setTableData(null)
     }
-  }, [selectedPrecinct]);
+  }, [selectedPrecinct])
 
   // TODO: consider making these toggles in each section and passing in the raw setter
   // This way we could use useEffect() to set the initial show state based on local logic
   // or we could just do that up here with our actual initial values
   const toggleShowVotes = () => {
-    setShowVotes(!showVotes);
-  };
+    setShowVotes(!showVotes)
+  }
   const toggleShowRules = () => {
-    setShowRules(!showRules);
-  };
+    setShowRules(!showRules)
+  }
   const toggleShowIssues = () => {
-    setShowIssues(!showIssues);
-  };
+    setShowIssues(!showIssues)
+  }
 
   return tableData ? (
     <Box sx={{ width: "100%" }}>
@@ -76,15 +76,15 @@ export const PrecinctTable = () => {
       </Styled.table>
     </Box>
   ) : (
-      <SelectAPrecinct />
-    );
-};
+    <SelectAPrecinct />
+  )
+}
 
 const SelectAPrecinct = () => (
   <Box sx={{ width: "100%" }}>
     <Styled.h3>Select a precinct</Styled.h3>
   </Box>
-);
+)
 
 const SectionHeader = ({ title, subtitle = "", toggleShow, show }) => {
   return (
@@ -103,13 +103,13 @@ const SectionHeader = ({ title, subtitle = "", toggleShow, show }) => {
         </Styled.th>
       </Styled.tr>
     </thead>
-  );
-};
+  )
+}
 
 const VotesSection = ({ data, show, toggleShow }) => {
-  const { candidates, precinct } = data;
-  const { viability_threshold: viabilityThreshold } = precinct;
-  const allCandidateKeys = Object.keys(candidates);
+  const { candidates, precinct } = data
+  const { viability_threshold: viabilityThreshold } = precinct
+  const allCandidateKeys = Object.keys(candidates)
 
   return (
     <>
@@ -144,7 +144,7 @@ const VotesSection = ({ data, show, toggleShow }) => {
           </thead>
           <tbody>
             {allCandidateKeys.map(k => {
-              const candidate = candidates[k];
+              const candidate = candidates[k]
               return (
                 <Styled.tr key={k}>
                   <Styled.td>
@@ -163,17 +163,17 @@ const VotesSection = ({ data, show, toggleShow }) => {
                     <Styled.p>{candidate["reported_del_given"]}</Styled.p>
                   </Styled.td>
                 </Styled.tr>
-              );
+              )
             })}
           </tbody>
         </>
       )}
     </>
-  );
-};
+  )
+}
 
 const IssuesSection = ({ data, show, toggleShow }) => {
-  const { issues } = data;
+  const { issues } = data
 
   return (
     <>
@@ -197,8 +197,8 @@ const IssuesSection = ({ data, show, toggleShow }) => {
         </tbody>
       )}
     </>
-  );
-};
+  )
+}
 
 const RulesSection = ({ result, show, toggleShow }) => {
   return (
@@ -258,5 +258,5 @@ const RulesSection = ({ result, show, toggleShow }) => {
         )}
       </>
     )
-  );
-};
+  )
+}

@@ -1,16 +1,16 @@
 /** @jsx jsx */
-import React from "react";
-import { jsx, Flex, Box, Styled } from "theme-ui";
-import Nevada from "./Nevada";
-import { Alerts } from "./Alerts";
+import React from "react"
+import { jsx, Flex, Box, Styled } from "theme-ui"
+import Nevada from "./Nevada"
+import { Alerts } from "./Alerts"
 // import Sankey from "./CorrelationSankey";
 // import CorrelationMatrix from "./CorrelationMatrix";
-import { PrecinctTable } from "./PrecinctTable";
-import { UserContext } from "./Context";
+import { PrecinctTable } from "./PrecinctTable"
+import { UserContext } from "./Context"
 
 const showMap =
   process.env.REACT_APP_SHOW_MAP === "true" ||
-  window.location.search.match("showmap");
+  (typeof window !== "undefined" && window.location.search.match("showmap"))
 
 const Loading = () => {
   return (
@@ -21,16 +21,16 @@ const Loading = () => {
         py: "4",
         mx: "auto",
         my: "auto",
-        textAlign: "center"
+        textAlign: "center",
       }}
     >
       <Styled.code sx={{ color: "text", fontSize: 2 }}>Loading ...</Styled.code>
     </Box>
-  );
-};
+  )
+}
 
 export const Main = () => {
-  const { data } = React.useContext(UserContext);
+  const { data } = React.useContext(UserContext)
   return data ? (
     <Flex
       sx={{
@@ -38,12 +38,12 @@ export const Main = () => {
         justifyContent: "flex-start",
         alignItems: "stretch",
         m: "0 auto",
-        width: "100%"
+        width: "100%",
       }}
     >
       {/* Left panel */}
       <Box sx={{ width: "350px", p: [2, 3], flex: "0 0 auto" }}>
-        <Alerts data={data} />
+        <Alerts />
       </Box>
       {/* Center panel */}
       {showMap && (
@@ -53,7 +53,7 @@ export const Main = () => {
             borderColor: "gray.1",
 
             flex: "1 0 auto",
-            py: [2, 3]
+            py: [2, 3],
           }}
         >
           <Nevada data={data}></Nevada>
@@ -69,7 +69,7 @@ export const Main = () => {
           flex: "1 0 auto",
           minWidth: "300px",
           p: [2, 3],
-          justifyContent: "space-between"
+          justifyContent: "space-between",
         }}
       >
         <PrecinctTable />
@@ -79,5 +79,5 @@ export const Main = () => {
     </Flex>
   ) : (
     <Loading />
-  );
-};
+  )
+}
